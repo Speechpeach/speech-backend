@@ -26,5 +26,5 @@ public abstract class BaseEntity {
 
     @ColumnDefault("false")
     @Column(columnDefinition = "TINYINT(1)")
-    protected boolean isDelete;
+    private boolean isDelete;
 }
