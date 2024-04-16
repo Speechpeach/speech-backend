@@ -1,0 +1,3 @@
+[submodule "speech-backend-security"]
+	path = speech-backend-security
+	url = https://github.com/Speechpeach/speech-backend-security.git
