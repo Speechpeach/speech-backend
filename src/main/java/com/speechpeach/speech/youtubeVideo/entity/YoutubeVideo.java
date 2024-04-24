@@ -34,7 +34,7 @@ public class YoutubeVideo extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime youtubeVideoPublishedAt;
 
-    @OneToMany(mappedBy = "youtube_videos", cascade = PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "youtubeVideo", cascade = PERSIST, orphanRemoval = true)
     private List<YoutubeVideoLike> youtubeVideoLikes = new ArrayList<>();
 
     private YoutubeVideo(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, LocalDateTime youtubeVideoPublishedAt) {
