@@ -29,10 +29,10 @@ public class MentoringPossibleDate extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mentoringPossibleDateId;
 
-    @Column(name = "mentoring_possible_date_day")
+    @Column(name = "mentoring_possible_date_day", nullable = false)
     private String mentoringPossibleDateDay;
 
-    @Column(name = "mentoring_possible_date_time_id")
+    @Column(name = "mentoring_possible_date_time_id", nullable = false)
     private String mentoringPossibleDateTimeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
