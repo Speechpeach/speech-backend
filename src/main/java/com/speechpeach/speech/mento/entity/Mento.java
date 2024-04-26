@@ -11,14 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "mentos")
@@ -50,7 +50,7 @@ public class Mento extends BaseEntity {
     @Column(name = "mento_title", nullable = false)
     private String mentoTitle;
 
-    @Column(name = "mento_content", nullable = false)
+    @Column(name = "mento_content",columnDefinition = "TEXT", length = 500, nullable = false)
     private String mentoContent;
 
     @Column(name = "mento_mentoring_method", nullable = false)
@@ -67,6 +67,25 @@ public class Mento extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
-    private Member memberId;
+    private Member member;
+
+    @Builder
+    public Mento(String mentoName, String mentoCareerPeriod, String mentoProfileImage, String mentoGenre,
+            String mentoEmail, String mentoPhoneNumber, String mentoTitle, String mentoContent, String mentoMentoringMethod,
+            int mentoMentoringTime, int mentoMentoringPrice, String mentoStatusId, Member member){
+        this.mentoName = mentoName;
+        this.mentoCareerPeriod = mentoCareerPeriod;
+        this.mentoProfileImage = mentoProfileImage;
+        this.mentoGenre = mentoGenre;
+        this.mentoEmail = mentoEmail;
+        this.mentoPhoneNumber = mentoPhoneNumber;
+        this.mentoTitle = mentoTitle;
+        this.mentoContent = mentoContent;
+        this. mentoMentoringMethod = mentoMentoringMethod;
+        this.mentoMentoringTime = mentoMentoringTime;
+        this.mentoMentoringPrice = mentoMentoringPrice;
+        this.mentoStatusId = mentoStatusId;
+        this.member = member;
+    }
 
 }

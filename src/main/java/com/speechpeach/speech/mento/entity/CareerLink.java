@@ -1,7 +1,6 @@
 package com.speechpeach.speech.mento.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
-import com.speechpeach.speech.user.entity.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,17 +8,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "career_links")
@@ -35,5 +33,11 @@ public class CareerLink extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mento_id", nullable = false)
-    private Mento mentoId;
+    private Mento mento;
+
+    @Builder
+    public CareerLink(String careerLinkContent, Mento mento){
+        this.careerLinkContent = careerLinkContent;
+        this.mento = mento;
+    }
 }

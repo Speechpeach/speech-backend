@@ -11,14 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "memos")
@@ -32,15 +32,22 @@ public class Memo extends BaseEntity {
     @Column(name = "memo_title", nullable = false)
     private String memoTitle;
 
-    @Column(name = "memo_content", nullable = false)
+    @Column(name = "memo_content",columnDefinition = "TEXT", length = 500, nullable = false)
     private String memoContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
-    private Member memberId;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "youtube_video_id", nullable = false)
-    private YoutubeVideo youtubeVideoId;
+    private YoutubeVideo youtubeVideo;
 
+    @Builder
+    public Memo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
+        this.memoTitle = memoTitle;
+        this.memoContent = memoContent;
+        this.member = member;
+        this.youtubeVideo = youtubeVideo;
+    }
 }

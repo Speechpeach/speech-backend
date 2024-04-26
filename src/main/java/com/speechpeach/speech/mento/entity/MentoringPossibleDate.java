@@ -1,7 +1,6 @@
 package com.speechpeach.speech.mento.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
-import com.speechpeach.speech.user.entity.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,14 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
+
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
 @Table(name = "mentoring_possible_dates")
@@ -29,13 +29,20 @@ public class MentoringPossibleDate extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long mentoringPossibleDateId;
 
-    @Column(name = "mentoring_possible_date_day", nullable = false)
+    @Column(name = "mentoring_possible_date_day", length = 3, nullable = false)
     private String mentoringPossibleDateDay;
 
-    @Column(name = "mentoring_possible_date_time_id", nullable = false)
+    @Column(name = "mentoring_possible_date_time_id", length = 24, nullable = false)
     private String mentoringPossibleDateTimeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mento_id", nullable = false)
-    private Mento mentoId;
+    private Mento mento;
+
+    @Builder
+    public MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
+        this.mentoringPossibleDateDay = mentoringPossibleDateDay;
+        this.mentoringPossibleDateTimeId = mentoringPossibleDateTimeId;
+        this.mento = mento;
+    }
 }
