@@ -12,7 +12,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -39,10 +38,16 @@ public class MentoringPossibleDate extends BaseEntity {
     @JoinColumn(name = "mento_id", nullable = false)
     private Mento mento;
 
-    @Builder
-    public MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
+    private MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
         this.mentoringPossibleDateDay = mentoringPossibleDateDay;
         this.mentoringPossibleDateTimeId = mentoringPossibleDateTimeId;
         this.mento = mento;
     }
+
+    public static MentoringPossibleDate createMentoringPossibleDate(
+            String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
+        return new MentoringPossibleDate(mentoringPossibleDateDay, mentoringPossibleDateTimeId, mento);
+    }
+
+
 }

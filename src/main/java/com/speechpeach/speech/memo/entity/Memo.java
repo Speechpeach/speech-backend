@@ -13,7 +13,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -43,11 +42,14 @@ public class Memo extends BaseEntity {
     @JoinColumn(name = "youtube_video_id", nullable = false)
     private YoutubeVideo youtubeVideo;
 
-    @Builder
-    public Memo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
+    private Memo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
         this.memoTitle = memoTitle;
         this.memoContent = memoContent;
         this.member = member;
         this.youtubeVideo = youtubeVideo;
+    }
+
+    public static Memo createMemo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
+        return new Memo(memoTitle, memoContent, member, youtubeVideo);
     }
 }

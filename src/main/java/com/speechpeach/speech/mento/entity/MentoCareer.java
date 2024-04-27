@@ -12,7 +12,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,10 +34,13 @@ public class MentoCareer extends BaseEntity {
     @JoinColumn(name = "mento_id", nullable = false)
     private Mento mento;
 
-    @Builder
-    public MentoCareer(String mentoCareerContent, Mento mento){
+    private MentoCareer(String mentoCareerContent, Mento mento){
         this.mentoCareerContent = mentoCareerContent;
         this.mento = mento;
+    }
+
+    public static MentoCareer createMentoCareer(String mentoCareerContent, Mento mento){
+        return new MentoCareer(mentoCareerContent, mento);
     }
 
 }

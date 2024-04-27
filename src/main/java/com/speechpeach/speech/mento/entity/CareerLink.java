@@ -12,7 +12,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,9 +34,12 @@ public class CareerLink extends BaseEntity {
     @JoinColumn(name = "mento_id", nullable = false)
     private Mento mento;
 
-    @Builder
-    public CareerLink(String careerLinkContent, Mento mento){
+    private CareerLink(String careerLinkContent, Mento mento){
         this.careerLinkContent = careerLinkContent;
         this.mento = mento;
+    }
+
+    public static CareerLink createCareerLink (String careerLinkContent, Mento mento){
+        return new CareerLink(careerLinkContent, mento);
     }
 }

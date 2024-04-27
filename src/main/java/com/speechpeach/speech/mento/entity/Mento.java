@@ -13,9 +13,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -69,8 +69,7 @@ public class Mento extends BaseEntity {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    @Builder
-    public Mento(String mentoName, String mentoCareerPeriod, String mentoProfileImage, String mentoGenre,
+    private Mento(String mentoName, String mentoCareerPeriod, String mentoProfileImage, String mentoGenre,
             String mentoEmail, String mentoPhoneNumber, String mentoTitle, String mentoContent, String mentoMentoringMethod,
             int mentoMentoringTime, int mentoMentoringPrice, String mentoStatusId, Member member){
         this.mentoName = mentoName;
@@ -86,6 +85,14 @@ public class Mento extends BaseEntity {
         this.mentoMentoringPrice = mentoMentoringPrice;
         this.mentoStatusId = mentoStatusId;
         this.member = member;
+    }
+
+    public static Mento createMento(String mentoName, String mentoCareerPeriod, String mentoProfileImage, String mentoGenre,
+            String mentoEmail, String mentoPhoneNumber, String mentoTitle, String mentoContent, String mentoMentoringMethod,
+            int mentoMentoringTime, int mentoMentoringPrice, String mentoStatusId, Member member){
+        return new Mento(mentoName, mentoCareerPeriod, mentoProfileImage, mentoGenre, mentoEmail, mentoPhoneNumber,
+                mentoTitle, mentoContent, mentoMentoringMethod, mentoMentoringTime, mentoMentoringPrice,
+                mentoStatusId, member);
     }
 
 }
