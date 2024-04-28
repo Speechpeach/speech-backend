@@ -1,4 +1,4 @@
-package com.speechpeach.speech.mento.entity;
+package com.speechpeach.speech.mentoring.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -11,12 +11,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -35,18 +33,18 @@ public class MentoringPossibleDate extends BaseEntity {
     private String mentoringPossibleDateTimeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mento_id", nullable = false)
-    private Mento mento;
+    @JoinColumn(name = "mentor_id", nullable = false)
+    private Mentor mentor;
 
-    private MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
+    private MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
         this.mentoringPossibleDateDay = mentoringPossibleDateDay;
         this.mentoringPossibleDateTimeId = mentoringPossibleDateTimeId;
-        this.mento = mento;
+        this.mentor = mentor;
     }
 
     public static MentoringPossibleDate createMentoringPossibleDate(
-            String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mento mento){
-        return new MentoringPossibleDate(mentoringPossibleDateDay, mentoringPossibleDateTimeId, mento);
+            String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
+        return new MentoringPossibleDate(mentoringPossibleDateDay, mentoringPossibleDateTimeId, mentor);
     }
 
 

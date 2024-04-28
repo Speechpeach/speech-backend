@@ -1,4 +1,4 @@
-package com.speechpeach.speech.mento.entity;
+package com.speechpeach.speech.mentoring.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
 import jakarta.persistence.Column;
@@ -11,11 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
@@ -31,15 +29,15 @@ public class CareerLink extends BaseEntity {
     private String careerLinkContent;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mento_id", nullable = false)
-    private Mento mento;
+    @JoinColumn(name = "mentor_id", nullable = false)
+    private Mentor mentor;
 
-    private CareerLink(String careerLinkContent, Mento mento){
+    private CareerLink(String careerLinkContent, Mentor mentor){
         this.careerLinkContent = careerLinkContent;
-        this.mento = mento;
+        this.mentor = mentor;
     }
 
-    public static CareerLink createCareerLink (String careerLinkContent, Mento mento){
-        return new CareerLink(careerLinkContent, mento);
+    public static CareerLink createCareerLink (String careerLinkContent, Mentor mentor){
+        return new CareerLink(careerLinkContent, mentor);
     }
 }
