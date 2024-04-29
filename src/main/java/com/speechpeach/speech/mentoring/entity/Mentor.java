@@ -89,7 +89,7 @@ public class Mentor extends BaseEntity {
         this.member = member;
     }
 
-    public static Mentor createMento(String name, MentorCareerPeriod careerPeriod, String profileImage, MentoringGenre mentoringGenre,
+    public static Mentor of(String name, MentorCareerPeriod careerPeriod, String profileImage, MentoringGenre mentoringGenre,
             String email, String phoneNumber, String title, String content, String mentoringMethod,
             int mentoringTime, int mentoringPrice, MentorStatus mentorStatus, Member member){
         return new Mentor(name, careerPeriod, profileImage, mentoringGenre, email, phoneNumber,

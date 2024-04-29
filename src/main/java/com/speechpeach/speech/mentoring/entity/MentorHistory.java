@@ -41,7 +41,7 @@ public class MentorHistory extends BaseEntity {
         this.mentor = mentor;
     }
 
-    public static MentorHistory createCareerLink (String careerLinkContent, String historyLink, Mentor mentor){
+    public static MentorHistory of(String careerLinkContent, String historyLink, Mentor mentor){
         return new MentorHistory(careerLinkContent, historyLink, mentor);
     }
 }

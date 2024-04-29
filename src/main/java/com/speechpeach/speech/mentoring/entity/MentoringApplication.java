@@ -69,7 +69,7 @@ public class MentoringApplication {
         this.mentor = mentor;
     }
 
-    public static MentoringApplication createMentoringApplication(String MenteeName,
+    public static MentoringApplication of(String MenteeName,
             String MenteePhoneNumber,
             String MenteeEmail, String toMentorMessage,
             MentoringApplyStatus mentoringApplyStatus,

@@ -34,7 +34,7 @@ public class Review extends BaseEntity {
         this.content = content;
     }
 
-    public static Review createReview(int star, String content){
+    public static Review of(int star, String content){
         return new Review(star, content);
     }
 }

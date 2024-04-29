@@ -45,7 +45,7 @@ public class Member extends BaseEntity {
         this.email = email;
     }
 
-    public static Member createMember(UUID memberId, String nickname,
+    public static Member of(UUID memberId, String nickname,
             String profileImage, String name, String email) {
         return new Member(memberId, nickname, profileImage, name, email);
     }

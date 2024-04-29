@@ -47,7 +47,7 @@ public class Memo extends BaseEntity {
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static Memo createMemo(String title, String content, Member member, YoutubeVideo youtubeVideo){
+    public static Memo of(String title, String content, Member member, YoutubeVideo youtubeVideo){
         return new Memo(title, content, member, youtubeVideo);
     }
 }

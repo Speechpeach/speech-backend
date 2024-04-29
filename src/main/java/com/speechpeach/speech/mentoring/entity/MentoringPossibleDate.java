@@ -45,7 +45,7 @@ public class MentoringPossibleDate extends BaseEntity {
         this.mentor = mentor;
     }
 
-    public static MentoringPossibleDate createMentoringPossibleDate(
+    public static MentoringPossibleDate of(
             MentoringPossibleDateDay dateDay, String timeId, Mentor mentor){
         return new MentoringPossibleDate(dateDay, timeId, mentor);
     }
