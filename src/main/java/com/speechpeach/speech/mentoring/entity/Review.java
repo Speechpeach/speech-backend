@@ -4,8 +4,6 @@ import com.speechpeach.speech.global.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -23,20 +21,20 @@ public class Review extends BaseEntity {
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentoring_apply_id", nullable = false)
-    private MentoringApplication mentoringApplication;
+    private MentoringApplication mentoringApplicationId;
 
     @Column(name = "review_star",columnDefinition = "TINYINT(3)", nullable = false)
-    private int reviewStar;
+    private int star;
 
     @Column(name = "review_content", columnDefinition = "TEXT", length = 500, nullable = false)
-    private String reviewContent;
+    private String content;
 
-    private Review(int reviewStar, String reviewContent){
-        this.reviewStar = reviewStar;
-        this.reviewContent = reviewContent;
+    private Review(int star, String content){
+        this.star = star;
+        this.content = content;
     }
 
-    public static Review createReview(int reviewStar, String reviewContent){
-        return new Review(reviewStar, reviewContent);
+    public static Review createReview(int star, String content){
+        return new Review(star, content);
     }
 }

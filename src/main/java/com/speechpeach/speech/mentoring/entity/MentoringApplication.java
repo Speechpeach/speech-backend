@@ -29,20 +29,20 @@ public class MentoringApplication {
     private Long mentoringApplyId;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime mentoringApplyDate;
+    @Column(name = "mentoring_apply_date", nullable = false, updatable = false)
+    private LocalDateTime applyDate;
 
     @Column(name = "mentoring_apply_mentee_name", nullable = false)
-    private String mentoringApplyMenteeName;
+    private String MenteeName;
 
     @Column(name = "mentoring_apply_mentee_phone_number", nullable = false)
-    private String mentoringApplyMenteePhoneNumber;
+    private String MenteePhoneNumber;
 
     @Column(name = "mentoring_apply_mentee_email", nullable = false)
-    private String mentoringApplyMenteeEmail;
+    private String MenteeEmail;
 
     @Column(name = "mentoring_apply_to_mentor_message", columnDefinition = "TEXT", length = 500, nullable = false)
-    private String mentoringApplyToMentorMessage;
+    private String toMentorMessage;
 
     @Column(name = "mentoring_apply_status", nullable = false)
     private MentoringApplyStatus mentoringApplyStatus;
@@ -55,28 +55,28 @@ public class MentoringApplication {
     @JoinColumn(name = "mentor_id", nullable = false)
     private Mentor mentor;
 
-    private MentoringApplication(String mentoringApplyMenteeName,
-            String mentoringApplyMenteePhoneNumber,
-            String mentoringApplyMenteeEmail, String mentoringApplyToMentorMessage,
+    private MentoringApplication(String MenteeName,
+            String MenteePhoneNumber,
+            String MenteeEmail, String toMentorMessage,
             MentoringApplyStatus mentoringApplyStatus,
             Member member, Mentor mentor) {
-        this.mentoringApplyMenteeName = mentoringApplyMenteeName;
-        this.mentoringApplyMenteePhoneNumber = mentoringApplyMenteePhoneNumber;
-        this.mentoringApplyMenteeEmail = mentoringApplyMenteeEmail;
-        this.mentoringApplyToMentorMessage = mentoringApplyToMentorMessage;
+        this.MenteeName = MenteeName;
+        this.MenteePhoneNumber = MenteePhoneNumber;
+        this.MenteeEmail = MenteeEmail;
+        this.toMentorMessage = toMentorMessage;
         this.mentoringApplyStatus = mentoringApplyStatus;
         this.member = member;
         this.mentor = mentor;
     }
 
-    public static MentoringApplication createMentoringApplication(String mentoringApplyMenteeName,
-            String mentoringApplyMenteePhoneNumber,
-            String mentoringApplyMenteeEmail, String mentoringApplyToMentorMessage,
+    public static MentoringApplication createMentoringApplication(String MenteeName,
+            String MenteePhoneNumber,
+            String MenteeEmail, String toMentorMessage,
             MentoringApplyStatus mentoringApplyStatus,
             Member member, Mentor mentor) {
-        return new MentoringApplication(mentoringApplyMenteeName, mentoringApplyMenteePhoneNumber,
-                mentoringApplyMenteeEmail,
-                mentoringApplyToMentorMessage, mentoringApplyStatus, member, mentor);
+        return new MentoringApplication(MenteeName, MenteePhoneNumber,
+                MenteeEmail,
+                toMentorMessage, mentoringApplyStatus, member, mentor);
     }
 
 }

@@ -25,29 +25,29 @@ public class Member extends BaseEntity {
     private UUID memberId;
 
     @Column(name = "member_nickname")
-    private String memberNickname;
+    private String nickname;
 
     @Column(name = "member_profile_image")
-    private String memberProfileImage;
+    private String profileImage;
 
     @Column(name = "member_name")
-    private String memberName;
+    private String name;
 
     @Column(name = "member_email")
-    private String memberEmail;
+    private String email;
 
-    private Member(UUID memberId, String memberNickname,
-            String memberProfileImage, String memberName, String memberEmail) {
+    private Member(UUID memberId, String nickname,
+            String profileImage, String name, String email) {
         this.memberId = memberId;
-        this.memberNickname = memberNickname;
-        this.memberProfileImage = memberProfileImage;
-        this.memberName = memberName;
-        this.memberEmail = memberEmail;
+        this.nickname = nickname;
+        this.profileImage = profileImage;
+        this.name = name;
+        this.email = email;
     }
 
-    public static Member createMember(UUID memberId, String memberNickname,
-            String memberProfileImage, String memberName, String memberEmail) {
-        return new Member(memberId, memberNickname, memberProfileImage, memberName, memberEmail);
+    public static Member createMember(UUID memberId, String nickname,
+            String profileImage, String name, String email) {
+        return new Member(memberId, nickname, profileImage, name, email);
     }
 }
 

@@ -30,24 +30,24 @@ public class MentoringPossibleDate extends BaseEntity {
 
     @Column(name = "mentoring_possible_date_day", length = 3, nullable = false)
     @Enumerated(EnumType.STRING)
-    private MentoringPossibleDateDay mentoringPossibleDateDay;
+    private MentoringPossibleDateDay dateDay;
 
     @Column(name = "mentoring_possible_date_time_id", length = 24, nullable = false)
-    private String mentoringPossibleDateTimeId;
+    private String timeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentor_id", nullable = false)
     private Mentor mentor;
 
-    private MentoringPossibleDate(MentoringPossibleDateDay mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
-        this.mentoringPossibleDateDay = mentoringPossibleDateDay;
-        this.mentoringPossibleDateTimeId = mentoringPossibleDateTimeId;
+    private MentoringPossibleDate(MentoringPossibleDateDay dateDay, String timeId, Mentor mentor){
+        this.dateDay = dateDay;
+        this.timeId = timeId;
         this.mentor = mentor;
     }
 
     public static MentoringPossibleDate createMentoringPossibleDate(
-            MentoringPossibleDateDay mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
-        return new MentoringPossibleDate(mentoringPossibleDateDay, mentoringPossibleDateTimeId, mentor);
+            MentoringPossibleDateDay dateDay, String timeId, Mentor mentor){
+        return new MentoringPossibleDate(dateDay, timeId, mentor);
     }
 
 

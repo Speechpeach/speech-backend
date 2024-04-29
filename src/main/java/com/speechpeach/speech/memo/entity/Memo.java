@@ -27,10 +27,10 @@ public class Memo extends BaseEntity {
     private Long memoId;
 
     @Column(name = "memo_title", nullable = false)
-    private String memoTitle;
+    private String title;
 
     @Column(name = "memo_content",columnDefinition = "TEXT", length = 500, nullable = false)
-    private String memoContent;
+    private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
@@ -40,14 +40,14 @@ public class Memo extends BaseEntity {
     @JoinColumn(name = "youtube_video_id", nullable = false)
     private YoutubeVideo youtubeVideo;
 
-    private Memo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
-        this.memoTitle = memoTitle;
-        this.memoContent = memoContent;
+    private Memo(String title, String content, Member member, YoutubeVideo youtubeVideo){
+        this.title = title;
+        this.content = content;
         this.member = member;
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static Memo createMemo(String memoTitle, String memoContent, Member member, YoutubeVideo youtubeVideo){
-        return new Memo(memoTitle, memoContent, member, youtubeVideo);
+    public static Memo createMemo(String title, String content, Member member, YoutubeVideo youtubeVideo){
+        return new Memo(title, content, member, youtubeVideo);
     }
 }

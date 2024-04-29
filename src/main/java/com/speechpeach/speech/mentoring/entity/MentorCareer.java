@@ -23,22 +23,22 @@ public class MentorCareer extends BaseEntity {
     @Id
     @Column(name = "mentor_career_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long mentorCareerId;
+    private Long careerId;
 
     @Column(name = "mentor_career_content", columnDefinition = "TEXT", length = 500, nullable = false)
-    private String mentorCareerContent;
+    private String careerContent;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentor_id", nullable = false)
     private Mentor mentor;
 
-    private MentorCareer(String mentorCareerContent, Mentor mentor){
-        this.mentorCareerContent = mentorCareerContent;
+    private MentorCareer(String careerContent, Mentor mentor){
+        this.careerContent = careerContent;
         this.mentor = mentor;
     }
 
-    public static MentorCareer createMentoCareer(String mentorCareerContent, Mentor mentor){
-        return new MentorCareer(mentorCareerContent, mentor);
+    public static MentorCareer createMentoCareer(String careerContent, Mentor mentor){
+        return new MentorCareer(careerContent, mentor);
     }
 
 }

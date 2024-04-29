@@ -29,39 +29,39 @@ public class Mentor extends BaseEntity {
     private Long mentorId;
 
     @Column(name = "mentor_name", nullable = false)
-    private String mentorName;
+    private String name;
 
     @Column(name = "mentor_career_period", nullable = false)
     @Enumerated(EnumType.STRING)
-    private MentorCareerPeriod mentorCareerPeriod;
+    private MentorCareerPeriod careerPeriod;
 
     @Column(name = "mentor_profile_image", nullable = false)
-    private String mentorProfileImage;
+    private String profileImage;
 
     @Column(name = "mentor_genre", nullable = false)
     @Enumerated(EnumType.STRING)
-    private MentorGenre mentorGenre;
+    private MentoringGenre mentoringGenre;
 
     @Column(name = "mentor_email", nullable = false)
-    private String mentorEmail;
+    private String email;
 
     @Column(name = "mentor_phone_number", nullable = false)
-    private String mentorPhoneNumber;
+    private String phoneNumber;
 
     @Column(name = "mentor_title", nullable = false)
-    private String mentorTitle;
+    private String title;
 
     @Column(name = "mentor_content",columnDefinition = "TEXT", length = 500, nullable = false)
-    private String mentorContent;
+    private String content;
 
     @Column(name = "mentor_mentoring_method", nullable = false)
-    private String mentorMentoringMethod;
+    private String mentoringMethod;
 
     @Column(name = "mentor_mentoring_time", nullable = false)
-    private int mentorMentoringTime;
+    private int mentoringTime;
 
     @Column(name = "mentor_mentoring_price", nullable = false)
-    private int mentorMentoringPrice;
+    private int mentoringPrice;
 
     @Column(name = "mentor_status", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -71,29 +71,29 @@ public class Mentor extends BaseEntity {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    private Mentor(String mentorName, MentorCareerPeriod mentorCareerPeriod, String mentorProfileImage, MentorGenre mentorGenre,
-            String mentorEmail, String mentorPhoneNumber, String mentorTitle, String mentorContent, String mentorMentoringMethod,
-            int mentorMentoringTime, int mentorMentoringPrice, MentorStatus mentorStatus, Member member){
-        this.mentorName = mentorName;
-        this.mentorCareerPeriod = mentorCareerPeriod;
-        this.mentorProfileImage = mentorProfileImage;
-        this.mentorGenre = mentorGenre;
-        this.mentorEmail = mentorEmail;
-        this.mentorPhoneNumber = mentorPhoneNumber;
-        this.mentorTitle = mentorTitle;
-        this.mentorContent = mentorContent;
-        this.mentorMentoringMethod = mentorMentoringMethod;
-        this.mentorMentoringTime = mentorMentoringTime;
-        this.mentorMentoringPrice = mentorMentoringPrice;
+    private Mentor(String name, MentorCareerPeriod careerPeriod, String profileImage, MentoringGenre mentoringGenre,
+            String email, String phoneNumber, String title, String content, String mentoringMethod,
+            int mentoringTime, int mentoringPrice, MentorStatus mentorStatus, Member member){
+        this.name = name;
+        this.careerPeriod = careerPeriod;
+        this.profileImage = profileImage;
+        this.mentoringGenre = mentoringGenre;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.title = title;
+        this.content = content;
+        this.mentoringMethod = mentoringMethod;
+        this.mentoringTime = mentoringTime;
+        this.mentoringPrice = mentoringPrice;
         this.mentorStatus = mentorStatus;
         this.member = member;
     }
 
-    public static Mentor createMento(String mentorName, MentorCareerPeriod mentorCareerPeriod, String mentorProfileImage, MentorGenre mentorGenre,
-            String mentorEmail, String mentorPhoneNumber, String mentorTitle, String mentorContent, String mentorMentoringMethod,
-            int mentorMentoringTime, int mentorMentoringPrice, MentorStatus mentorStatus, Member member){
-        return new Mentor(mentorName, mentorCareerPeriod, mentorProfileImage, mentorGenre, mentorEmail, mentorPhoneNumber,
-                mentorTitle, mentorContent, mentorMentoringMethod, mentorMentoringTime, mentorMentoringPrice,
+    public static Mentor createMento(String name, MentorCareerPeriod careerPeriod, String profileImage, MentoringGenre mentoringGenre,
+            String email, String phoneNumber, String title, String content, String mentoringMethod,
+            int mentoringTime, int mentoringPrice, MentorStatus mentorStatus, Member member){
+        return new Mentor(name, careerPeriod, profileImage, mentoringGenre, email, phoneNumber,
+                title, content, mentoringMethod, mentoringTime, mentoringPrice,
                 mentorStatus, member);
     }
 
