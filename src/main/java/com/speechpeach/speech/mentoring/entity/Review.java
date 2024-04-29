@@ -23,7 +23,6 @@ public class Review extends BaseEntity {
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentoring_apply_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private MentoringApplication mentoringApplication;
 
     @Column(name = "review_star",columnDefinition = "TINYINT(3)", nullable = false)
