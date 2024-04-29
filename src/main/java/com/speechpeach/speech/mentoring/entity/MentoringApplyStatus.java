@@ -7,8 +7,4 @@ public enum MentoringApplyStatus {
     MENTORING_COMPLETED,
     CANCELLATION_REFUND;
 
-
-
-
-
 }
