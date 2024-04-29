@@ -17,27 +17,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-@Table(name = "career_links")
-public class CareerLink extends BaseEntity {
+@Table(name = "mentor_history")
+public class MentorHistory extends BaseEntity {
 
     @Id
-    @Column(name = "career_link_id", nullable = false)
+    @Column(name = "mentor_history_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long careerLinkId;
+    private Long historyId;
 
-    @Column(name ="career_link_content", nullable = false)
-    private String careerLinkContent;
+    @Column(name ="mentor_history_content", nullable = false)
+    private String historyContent;
+
+    @Column(name = "mentor_history_link")
+    private String historyLink;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mentor_id", nullable = false)
     private Mentor mentor;
 
-    private CareerLink(String careerLinkContent, Mentor mentor){
-        this.careerLinkContent = careerLinkContent;
+    private MentorHistory(String historyContent, String historyLink, Mentor mentor){
+        this.historyContent = historyContent;
+        this.historyLink = historyLink;
         this.mentor = mentor;
     }
 
-    public static CareerLink createCareerLink (String careerLinkContent, Mentor mentor){
-        return new CareerLink(careerLinkContent, mentor);
+    public static MentorHistory createCareerLink (String careerLinkContent, String historyLink, Mentor mentor){
+        return new MentorHistory(careerLinkContent, historyLink, mentor);
     }
 }
