@@ -1,5 +1,5 @@
 package com.speechpeach.speech.mentoring.entity;
 
 public enum MentorStatus {
-    ENABLED, DISABLED
+    활성, 비활성;
 }

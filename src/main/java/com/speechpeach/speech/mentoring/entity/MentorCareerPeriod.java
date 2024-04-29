@@ -1,5 +1,5 @@
 package com.speechpeach.speech.mentoring.entity;
 
 public enum MentorCareerPeriod {
-    JUNIOR, MIDDLE, SENIOR
+    주니어, 미들, 시니어;
 }
