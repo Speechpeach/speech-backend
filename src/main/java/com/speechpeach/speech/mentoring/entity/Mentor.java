@@ -4,6 +4,8 @@ import com.speechpeach.speech.global.entity.BaseEntity;
 import com.speechpeach.speech.member.entity.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,13 +32,15 @@ public class Mentor extends BaseEntity {
     private String mentorName;
 
     @Column(name = "mentor_career_period", nullable = false)
-    private String mentorCareerPeriod;
+    @Enumerated(EnumType.STRING)
+    private MentorCareerPeriod mentorCareerPeriod;
 
     @Column(name = "mentor_profile_image", nullable = false)
     private String mentorProfileImage;
 
     @Column(name = "mentor_genre", nullable = false)
-    private String mentorGenre;
+    @Enumerated(EnumType.STRING)
+    private MentorGenre mentorGenre;
 
     @Column(name = "mentor_email", nullable = false)
     private String mentorEmail;
@@ -59,16 +63,17 @@ public class Mentor extends BaseEntity {
     @Column(name = "mentor_mentoring_price", nullable = false)
     private int mentorMentoringPrice;
 
-    @Column(name = "mentor_status_id", nullable = false)
-    private String mentorStatusId;
+    @Column(name = "mentor_status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private MentorStatus mentorStatus;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    private Mentor(String mentorName, String mentorCareerPeriod, String mentorProfileImage, String mentorGenre,
+    private Mentor(String mentorName, MentorCareerPeriod mentorCareerPeriod, String mentorProfileImage, MentorGenre mentorGenre,
             String mentorEmail, String mentorPhoneNumber, String mentorTitle, String mentorContent, String mentorMentoringMethod,
-            int mentorMentoringTime, int mentorMentoringPrice, String mentorStatusId, Member member){
+            int mentorMentoringTime, int mentorMentoringPrice, MentorStatus mentorStatus, Member member){
         this.mentorName = mentorName;
         this.mentorCareerPeriod = mentorCareerPeriod;
         this.mentorProfileImage = mentorProfileImage;
@@ -80,16 +85,16 @@ public class Mentor extends BaseEntity {
         this.mentorMentoringMethod = mentorMentoringMethod;
         this.mentorMentoringTime = mentorMentoringTime;
         this.mentorMentoringPrice = mentorMentoringPrice;
-        this.mentorStatusId = mentorStatusId;
+        this.mentorStatus = mentorStatus;
         this.member = member;
     }
 
-    public static Mentor createMento(String mentorName, String mentorCareerPeriod, String mentorProfileImage, String mentorGenre,
+    public static Mentor createMento(String mentorName, MentorCareerPeriod mentorCareerPeriod, String mentorProfileImage, MentorGenre mentorGenre,
             String mentorEmail, String mentorPhoneNumber, String mentorTitle, String mentorContent, String mentorMentoringMethod,
-            int mentorMentoringTime, int mentorMentoringPrice, String mentorStatusId, Member member){
+            int mentorMentoringTime, int mentorMentoringPrice, MentorStatus mentorStatus, Member member){
         return new Mentor(mentorName, mentorCareerPeriod, mentorProfileImage, mentorGenre, mentorEmail, mentorPhoneNumber,
                 mentorTitle, mentorContent, mentorMentoringMethod, mentorMentoringTime, mentorMentoringPrice,
-                mentorStatusId, member);
+                mentorStatus, member);
     }
 
 }

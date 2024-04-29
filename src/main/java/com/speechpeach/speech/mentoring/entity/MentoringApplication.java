@@ -45,7 +45,7 @@ public class MentoringApplication {
     private String mentoringApplyToMentorMessage;
 
     @Column(name = "mentoring_apply_status", nullable = false)
-    private String mentoringApplyStatus;
+    private MentoringApplyStatus mentoringApplyStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
@@ -58,7 +58,7 @@ public class MentoringApplication {
     private MentoringApplication(String mentoringApplyMenteeName,
             String mentoringApplyMenteePhoneNumber,
             String mentoringApplyMenteeEmail, String mentoringApplyToMentorMessage,
-            String mentoringApplyStatus,
+            MentoringApplyStatus mentoringApplyStatus,
             Member member, Mentor mentor) {
         this.mentoringApplyMenteeName = mentoringApplyMenteeName;
         this.mentoringApplyMenteePhoneNumber = mentoringApplyMenteePhoneNumber;
@@ -72,7 +72,7 @@ public class MentoringApplication {
     public static MentoringApplication createMentoringApplication(String mentoringApplyMenteeName,
             String mentoringApplyMenteePhoneNumber,
             String mentoringApplyMenteeEmail, String mentoringApplyToMentorMessage,
-            String mentoringApplyStatus,
+            MentoringApplyStatus mentoringApplyStatus,
             Member member, Mentor mentor) {
         return new MentoringApplication(mentoringApplyMenteeName, mentoringApplyMenteePhoneNumber,
                 mentoringApplyMenteeEmail,

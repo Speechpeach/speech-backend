@@ -3,6 +3,8 @@ package com.speechpeach.speech.mentoring.entity;
 import com.speechpeach.speech.global.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +29,8 @@ public class MentoringPossibleDate extends BaseEntity {
     private Long mentoringPossibleDateId;
 
     @Column(name = "mentoring_possible_date_day", length = 3, nullable = false)
-    private String mentoringPossibleDateDay;
+    @Enumerated(EnumType.STRING)
+    private MentoringPossibleDateDay mentoringPossibleDateDay;
 
     @Column(name = "mentoring_possible_date_time_id", length = 24, nullable = false)
     private String mentoringPossibleDateTimeId;
@@ -36,14 +39,14 @@ public class MentoringPossibleDate extends BaseEntity {
     @JoinColumn(name = "mentor_id", nullable = false)
     private Mentor mentor;
 
-    private MentoringPossibleDate(String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
+    private MentoringPossibleDate(MentoringPossibleDateDay mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
         this.mentoringPossibleDateDay = mentoringPossibleDateDay;
         this.mentoringPossibleDateTimeId = mentoringPossibleDateTimeId;
         this.mentor = mentor;
     }
 
     public static MentoringPossibleDate createMentoringPossibleDate(
-            String mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
+            MentoringPossibleDateDay mentoringPossibleDateDay, String mentoringPossibleDateTimeId, Mentor mentor){
         return new MentoringPossibleDate(mentoringPossibleDateDay, mentoringPossibleDateTimeId, mentor);
     }
 
