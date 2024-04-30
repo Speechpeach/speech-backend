@@ -30,7 +30,7 @@ public class YoutubeVideoLike extends BaseEntity {
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static YoutubeVideoLike createYoutubeVideoLike(User user, YoutubeVideo youtubeVideo){
+    public static YoutubeVideoLike of(User user, YoutubeVideo youtubeVideo){
         return new YoutubeVideoLike(user, youtubeVideo);
     }
 }

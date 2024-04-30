@@ -22,29 +22,29 @@ public class YoutubeVideo extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long youtubeVideoId;
 
-    @Column(nullable = false)
-    private String youtubeVideoRequestId;
+    @Column(name = "youtube_video_request_id", nullable = false)
+    private String requestId;
 
-    @Column(nullable = false)
-    private String youtubeVideoChannelTitle;
+    @Column(name = "youtube_video_channel_title", nullable = false)
+    private String channelTitle;
 
-    @Column(nullable = false)
-    private String youtubeVideoTitle;
+    @Column(name = "youtube_video_title", nullable = false)
+    private String title;
 
-    @Column(nullable = false)
-    private LocalDateTime youtubeVideoPublishedAt;
+    @Column(name = "youtube_video_publishedat", nullable = false)
+    private LocalDateTime publishedAt;
 
     @OneToMany(mappedBy = "youtubeVideo", cascade = PERSIST, orphanRemoval = true)
     private List<YoutubeVideoLike> youtubeVideoLikes = new ArrayList<>();
 
-    private YoutubeVideo(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, LocalDateTime youtubeVideoPublishedAt) {
-        this.youtubeVideoRequestId = youtubeVideoRequestId;
-        this.youtubeVideoChannelTitle = youtubeVideoChannelTitle;
-        this.youtubeVideoTitle = youtubeVideoTitle;
-        this.youtubeVideoPublishedAt = youtubeVideoPublishedAt;
+    private YoutubeVideo(String requestId, String channelTitle, String title, LocalDateTime publishedAt) {
+        this.requestId = requestId;
+        this.channelTitle = channelTitle;
+        this.title = title;
+        this.publishedAt = publishedAt;
     }
 
-    public static YoutubeVideo createYoutubeVideo(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, LocalDateTime youtubeVideoPublishedAt) {
+    public static YoutubeVideo of(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, LocalDateTime youtubeVideoPublishedAt) {
         return new YoutubeVideo(youtubeVideoRequestId, youtubeVideoChannelTitle, youtubeVideoTitle, youtubeVideoPublishedAt);
     }
 

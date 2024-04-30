@@ -19,11 +19,11 @@ public class Record extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long recordId;
 
-    @Column(nullable = false)
-    private String recordTitle;
+    @Column(name = "record_title", nullable = false)
+    private String title;
 
-    @Column(nullable = false)
-    private String recordContentUrl;
+    @Column(name = "record_content_url", nullable = false)
+    private String contentUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -33,14 +33,14 @@ public class Record extends BaseEntity {
     @JoinColumn(name = "youtube_video_id")
     private YoutubeVideo youtubeVideo;
 
-    private Record(String recordTitle, String recordContentUrl, User user, YoutubeVideo youtubeVideo) {
-        this.recordTitle = recordTitle;
-        this.recordContentUrl = recordContentUrl;
+    private Record(String title, String contentUrl, User user, YoutubeVideo youtubeVideo) {
+        this.title = title;
+        this.contentUrl = contentUrl;
         this.user = user;
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static Record createRecord(String recordTitle, String recordContentUrl, User user, YoutubeVideo youtubeVideo) {
+    public static Record of(String recordTitle, String recordContentUrl, User user, YoutubeVideo youtubeVideo) {
         return new Record(recordTitle, recordContentUrl, user, youtubeVideo);
     }
 }
