@@ -2,6 +2,7 @@ package com.speechpeach.speech.memo.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
 import com.speechpeach.speech.member.entity.Member;
+import com.speechpeach.speech.youtubeVideo.entity.YoutubeVideo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
