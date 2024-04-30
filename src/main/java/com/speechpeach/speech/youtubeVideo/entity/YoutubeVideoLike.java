@@ -1,7 +1,7 @@
 package com.speechpeach.speech.youtubeVideo.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
-import com.speechpeach.speech.user.entity.User;
+import com.speechpeach.speech.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,19 +18,19 @@ public class YoutubeVideoLike extends BaseEntity {
     private Long likeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "youtube_video_id")
     private YoutubeVideo youtubeVideo;
 
-    private YoutubeVideoLike(User user, YoutubeVideo youtubeVideo){
-        this.user = user;
+    private YoutubeVideoLike(Member member, YoutubeVideo youtubeVideo){
+        this.member = member;
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static YoutubeVideoLike of(User user, YoutubeVideo youtubeVideo){
-        return new YoutubeVideoLike(user, youtubeVideo);
+    public static YoutubeVideoLike of(Member member, YoutubeVideo youtubeVideo){
+        return new YoutubeVideoLike(member, youtubeVideo);
     }
 }

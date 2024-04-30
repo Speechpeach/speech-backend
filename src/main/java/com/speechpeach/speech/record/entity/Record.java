@@ -2,7 +2,7 @@ package com.speechpeach.speech.record.entity;
 
 
 import com.speechpeach.speech.global.entity.BaseEntity;
-import com.speechpeach.speech.user.entity.User;
+import com.speechpeach.speech.member.entity.Member;
 import com.speechpeach.speech.youtubeVideo.entity.YoutubeVideo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -26,21 +26,21 @@ public class Record extends BaseEntity {
     private String contentUrl;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "youtube_video_id")
     private YoutubeVideo youtubeVideo;
 
-    private Record(String title, String contentUrl, User user, YoutubeVideo youtubeVideo) {
+    private Record(String title, String contentUrl, Member member, YoutubeVideo youtubeVideo) {
         this.title = title;
         this.contentUrl = contentUrl;
-        this.user = user;
+        this.member = member;
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static Record of(String recordTitle, String recordContentUrl, User user, YoutubeVideo youtubeVideo) {
-        return new Record(recordTitle, recordContentUrl, user, youtubeVideo);
+    public static Record of(String recordTitle, String recordContentUrl, Member member, YoutubeVideo youtubeVideo) {
+        return new Record(recordTitle, recordContentUrl, member, youtubeVideo);
     }
 }

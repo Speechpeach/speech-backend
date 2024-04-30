@@ -25,6 +25,6 @@ public abstract class BaseEntity {
     private LocalDateTime modifiedDate;
 
     @ColumnDefault("false")
-    @Column(columnDefinition = "TINYINT(1)")
+    @Column(columnDefinition = "TINYINT(1)", nullable = false)
     private boolean isDelete;
 }

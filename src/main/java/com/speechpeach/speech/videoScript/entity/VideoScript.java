@@ -1,7 +1,7 @@
 package com.speechpeach.speech.videoScript.entity;
 
 import com.speechpeach.speech.global.entity.BaseEntity;
-import com.speechpeach.speech.user.entity.User;
+import com.speechpeach.speech.member.entity.Member;
 import com.speechpeach.speech.youtubeVideo.entity.YoutubeVideo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -36,23 +36,23 @@ public class VideoScript extends BaseEntity {
     private String color;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "youtube_video_id")
     private YoutubeVideo youtubeVideo;
 
-    private VideoScript(String title, String highlight, String slash, String color, User user, YoutubeVideo youtubeVideo) {
+    private VideoScript(String title, String highlight, String slash, String color, Member member, YoutubeVideo youtubeVideo) {
         this.title = title;
         this.highlight = highlight;
         this.slash = slash;
         this.color = color;
-        this.user = user;
+        this.member = member;
         this.youtubeVideo = youtubeVideo;
     }
 
-    public static VideoScript of(String videoScriptTitle, String videoScriptHighlight, String videoScriptSlash, String videoScriptColor, User user, YoutubeVideo youtubeVideo){
-        return new VideoScript(videoScriptTitle, videoScriptHighlight, videoScriptSlash, videoScriptColor, user, youtubeVideo);
+    public static VideoScript of(String videoScriptTitle, String videoScriptHighlight, String videoScriptSlash, String videoScriptColor, Member member, YoutubeVideo youtubeVideo){
+        return new VideoScript(videoScriptTitle, videoScriptHighlight, videoScriptSlash, videoScriptColor, member, youtubeVideo);
     }
 }
