@@ -31,21 +31,30 @@ public class YoutubeVideo extends BaseEntity {
     @Column(name = "youtube_video_title", nullable = false)
     private String title;
 
+    @Column(name = "youtube_video_default_thumbnail", nullable = false)
+    private String defaultThumbnail;
+
+    @Column(name = "youtube_video_high_thumbnail", nullable = false)
+    private String highThumbnail;
+
     @Column(name = "youtube_video_publishedat", nullable = false)
     private LocalDateTime publishedAt;
 
     @OneToMany(mappedBy = "youtubeVideo", cascade = PERSIST, orphanRemoval = true)
     private List<YoutubeVideoLike> youtubeVideoLikes = new ArrayList<>();
 
-    private YoutubeVideo(String requestId, String channelTitle, String title, LocalDateTime publishedAt) {
+    private YoutubeVideo(String requestId, String channelTitle, String title, String defaultThumbnail, String highThumbnail, LocalDateTime publishedAt) {
         this.requestId = requestId;
         this.channelTitle = channelTitle;
         this.title = title;
+        this.defaultThumbnail = defaultThumbnail;
+        this.highThumbnail = highThumbnail;
         this.publishedAt = publishedAt;
     }
 
-    public static YoutubeVideo of(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, LocalDateTime youtubeVideoPublishedAt) {
-        return new YoutubeVideo(youtubeVideoRequestId, youtubeVideoChannelTitle, youtubeVideoTitle, youtubeVideoPublishedAt);
+    public static YoutubeVideo of(String youtubeVideoRequestId, String youtubeVideoChannelTitle, String youtubeVideoTitle, String defaultThumbnail,
+            String highThumbnail, LocalDateTime youtubeVideoPublishedAt) {
+        return new YoutubeVideo(youtubeVideoRequestId, youtubeVideoChannelTitle, youtubeVideoTitle, defaultThumbnail, highThumbnail, youtubeVideoPublishedAt);
     }
 
 }
