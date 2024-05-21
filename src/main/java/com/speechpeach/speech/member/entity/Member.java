@@ -1,6 +1,7 @@
 package com.speechpeach.speech.member.entity;
 
 import jakarta.persistence.*;
+import com.speechpeach.speech.global.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Entity
 @Table(name = "members")
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
