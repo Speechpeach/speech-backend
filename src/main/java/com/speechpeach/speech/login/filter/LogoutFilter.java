@@ -54,9 +54,6 @@ public class LogoutFilter extends GenericFilterBean {
         if (!jwtTokenProvider.validateToken(refreshToken)) {
             throw new AuthException(AuthExceptionCode.INVALID_REFRESH_TOKEN);
         }
-        if (!refreshTokenService.existsByToken(refreshToken)) {
-            throw new AuthException(AuthExceptionCode.INVALID_REFRESH_TOKEN);
-        }
         refreshTokenService.delete(refreshToken);
         CookieUtils.deleteCookie(request, response, REFRESH_TOKEN_COOKIE_NAME);
 

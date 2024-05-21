@@ -27,4 +27,8 @@ public abstract class BaseEntity {
     @ColumnDefault("false")
     @Column(columnDefinition = "TINYINT(1)", nullable = false)
     private boolean isDelete;
+
+    public void delete() {
+        isDelete = true;
+    }
 }

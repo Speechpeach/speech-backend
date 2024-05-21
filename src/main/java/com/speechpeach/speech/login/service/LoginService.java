@@ -20,7 +20,7 @@ public class LoginService {
     private final RefreshTokenService refreshTokenService;
 
     public String renewAccessToken(final String refreshToken) {
-        if (!jwtTokenProvider.validateToken(refreshToken) || !refreshTokenService.existsByToken(refreshToken)) {
+        if (!jwtTokenProvider.validateToken(refreshToken) || !refreshTokenService.existsByTokenAndNotDeleted(refreshToken)) {
             throw new AuthException(AuthExceptionCode.INVALID_REFRESH_TOKEN);
         }
 

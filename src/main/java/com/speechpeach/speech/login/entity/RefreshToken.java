@@ -1,5 +1,6 @@
 package com.speechpeach.speech.login.entity;
 
+import com.speechpeach.speech.global.entity.BaseEntity;
 import com.speechpeach.speech.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -11,14 +12,14 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "refresh_tokens")
-public class RefreshToken {
+public class RefreshToken extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "member_id", nullable = false, unique = true, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false, updatable = false)
     private Member member;
 
     @Column(nullable = false, unique = true)

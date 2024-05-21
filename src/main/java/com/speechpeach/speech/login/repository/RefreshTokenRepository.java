@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
-    boolean existsByToken(String token);
+    boolean existsByTokenAndIsDelete(String token, boolean isDelete);
 
-    Optional<RefreshToken> findByMember(Member member);
+    Optional<RefreshToken> findByMemberAndIsDelete(Member member, boolean isDelete);
 
-    void deleteByToken(String token);
+    Optional<RefreshToken> findByTokenAndIsDelete(String refreshToken, boolean isDelete);
 }
