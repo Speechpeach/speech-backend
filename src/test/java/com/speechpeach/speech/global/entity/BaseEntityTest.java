@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
 @DisplayName("BaseEntity 테스트")
 class BaseEntityTest {
 
