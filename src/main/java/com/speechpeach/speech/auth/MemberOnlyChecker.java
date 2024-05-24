@@ -14,6 +14,7 @@ import static com.speechpeach.speech.auth.exception.AuthExceptionCode.INVALID_AU
 
 /**
  * Member 권한을 가지는지 검증하는 클래스
+ * @see com.speechpeach.speech.auth.annotation.MemberOnly
  */
 @Aspect
 @Component
