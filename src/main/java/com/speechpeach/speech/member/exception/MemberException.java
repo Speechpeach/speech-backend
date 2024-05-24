@@ -1,5 +1,8 @@
 package com.speechpeach.speech.member.exception;
 
+import lombok.Getter;
+
+@Getter
 public class MemberException extends RuntimeException {
     private final String code;
 
