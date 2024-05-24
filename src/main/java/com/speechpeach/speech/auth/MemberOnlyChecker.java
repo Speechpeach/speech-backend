@@ -3,6 +3,7 @@ package com.speechpeach.speech.auth;
 import com.speechpeach.speech.auth.domain.AuthMember;
 import com.speechpeach.speech.auth.domain.Role;
 import com.speechpeach.speech.auth.exception.AuthException;
+import com.speechpeach.speech.global.exception.NoSearchParameterException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,6 +15,7 @@ import static com.speechpeach.speech.auth.exception.AuthExceptionCode.INVALID_AU
 
 /**
  * Member 권한을 가지는지 검증하는 클래스
+ *
  * @see com.speechpeach.speech.auth.annotation.MemberOnly
  */
 @Aspect
@@ -26,7 +28,7 @@ public class MemberOnlyChecker {
                 .filter(AuthMember.class::isInstance)
                 .map(AuthMember.class::cast)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("@MemberOnly 어노테이션이 붙은 메소드는 반드시 AuthMember 타입의 파라미터를 가져야합니다."));
+                .orElseThrow(() -> new NoSearchParameterException(joinPoint.getSignature(), AuthMember.class));
 
         if (!authMember.getRole().equals(Role.ROLE_MEMBER)) {
             throw new AuthException(INVALID_AUTHORITY);
