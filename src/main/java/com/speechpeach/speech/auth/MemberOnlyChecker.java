@@ -3,7 +3,7 @@ package com.speechpeach.speech.auth;
 import com.speechpeach.speech.auth.domain.AuthMember;
 import com.speechpeach.speech.auth.domain.Role;
 import com.speechpeach.speech.auth.exception.AuthException;
-import com.speechpeach.speech.global.exception.NoSearchParameterException;
+import com.speechpeach.speech.global.exception.MissingMethodParameterException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -28,7 +28,7 @@ public class MemberOnlyChecker {
                 .filter(AuthMember.class::isInstance)
                 .map(AuthMember.class::cast)
                 .findFirst()
-                .orElseThrow(() -> new NoSearchParameterException(joinPoint.getSignature(), AuthMember.class));
+                .orElseThrow(() -> new MissingMethodParameterException(joinPoint.getSignature(), AuthMember.class));
 
         if (!authMember.getRole().equals(Role.ROLE_MEMBER)) {
             throw new AuthException(INVALID_AUTHORITY);
