@@ -1,4 +1,4 @@
 package com.speechpeach.speech.global.exception;
 
-public record ErrorResponse(String code, String message) {
+public record ErrorResponse(String errorCode, String message) {
 }
