@@ -1,7 +1,5 @@
 package com.speechpeach.speech.global.exception;
 
-import com.speechpeach.speech.auth.exception.AuthException;
-import com.speechpeach.speech.member.exception.MemberException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,20 +13,16 @@ import static com.speechpeach.speech.global.exception.GlobalExceptionCode.INTERN
 public class ApiGlobalExceptionHandler {
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleAuthException(final AuthException e) {
-        return ResponseEntity.badRequest()
-                .body(new ErrorResponse(e.getCode(), e.getMessage()));
-    }
-
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleMemberException(final MemberException e) {
-        return ResponseEntity.badRequest()
-                .body(new ErrorResponse(e.getCode(), e.getMessage()));
+    public ResponseEntity<ErrorResponse> handleBaseException(final BaseException e) {
+        return ResponseEntity
+                .status(e.getHttpStatus())
+                .body(new ErrorResponse(e.getErrorCode(), e.getMessage()));
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException(final Exception e) {
-        return ResponseEntity.internalServerError()
-                .body(new ErrorResponse(INTERNAL_SERVER_ERROR.getCode(), INTERNAL_SERVER_ERROR.getMessage()));
+        return ResponseEntity
+                .status(INTERNAL_SERVER_ERROR.getHttpStatus())
+                .body(new ErrorResponse(INTERNAL_SERVER_ERROR.getErrorCode(), INTERNAL_SERVER_ERROR.getMessage()));
     }
 }
