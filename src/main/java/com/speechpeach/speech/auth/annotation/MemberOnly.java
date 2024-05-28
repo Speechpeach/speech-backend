@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 사용자가 Member 권한을 가지는지 확인하는 어노테이션
+ * @see com.speechpeach.speech.auth.MemberOnlyChecker
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

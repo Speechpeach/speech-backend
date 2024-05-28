@@ -1,13 +1,11 @@
 package com.speechpeach.speech.auth.exception;
 
-import lombok.Getter;
+import com.speechpeach.speech.global.exception.BaseException;
 
-@Getter
-public class AuthException extends RuntimeException {
-    private final String code;
+public class AuthException extends BaseException {
+    private static final String ERROR_CODE_PREFIX = "AUTH_";
 
-    public AuthException(final AuthExceptionCode authExceptionCode) {
-        super(authExceptionCode.getMessage());
-        this.code = authExceptionCode.getCode();
+    public AuthException(final AuthExceptionCode exceptionCode) {
+        super(exceptionCode.getHttpStatus(), ERROR_CODE_PREFIX + exceptionCode.getErrorCode(), exceptionCode.getMessage());
     }
 }
